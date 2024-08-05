@@ -13,7 +13,6 @@
     <script src="../static/firebase2.js" type="module"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
@@ -23,42 +22,96 @@
             font-style: normal;
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-        #mainTitle {
+        body {
+            margin: 0;
+        }
+
+        h1,
+        p {
+            margin: 0;
+        }
+
+        .header {
+            height: 80px;
+            background-color: blueviolet;
+        }
+
+        .headline {
+            height: 120px;
+            margin-left: 40px;
+            margin-right: 40px;
+            /*  background-color: gray;*/
+            text-align: center;
+        }
+
+        .deckRotate {
+            height: 420px;
+            /*background-color: blueviolet;*/
+            margin-left: 00px;
+            margin-right: 00px;
+            text-align: center;
+            overflow: scroll;
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        .teamName {
             padding-top: 20px;
-            margin-left: 50px;
-            margin-right: 50px;
-            /*background-color: olive;*/
-            text-align: center;
+
         }
 
-        #deckRotate {
-            margin-top: 30px;
-            margin-left: 50px;
-            margin-right: 50px;
-            background-color: orange;
-            height: 450px;
-            text-align: center;
+        .introduceMent {
+            padding-top: 10px;
         }
 
-        #cards {
-
-            border-radius: 8px;
-            background-color: gray;
-            width: 285px;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        #cardFront {
-            background-color: whitesmoke;
+        .card {
+            width: 270px;
+            height: 420px;
+            transition: width 1s;
+            background-color: #3785d2;
             border-radius: 10px;
-            width: 250px;
-            height: 450px;
-            margin-left: 10px;
-            margin-right: 10px;
             display: inline-block;
+            margin-left: 25px;
+            margin-right: 25px;
+            border: 1px solid white;
         }
+
+        .card:hover {
+            width: 470px;
+            transition: width 1s;
+            height: 420px;
+            background-color: #3785d2;
+            border-radius: 10px;
+            display: inline-block;
+            margin-left: 25px;
+            margin-right: 25px;
+            border: 1px solid white;
+        }
+
+        .cardImageSlot {
+            width: 270px;
+            height: 420px;
+            background-color: beige;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        .picture {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+
+
+
     </style>
 
     <script>
@@ -66,35 +119,56 @@
     </script>
 </head>
 
+
 <body>
+
+    <!--
+    <div class="header">
+    </div>
+-->
+
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Team</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Member</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">News</a></li>
         </ul>
     </header>
 
-    <div id="mainTitle">
-        <h2>취중코오딩</h2>
+    <div class="headline">
+        <h1 class="teamName">취중코오딩</h1>
+        <p class="introduceMent">저희 팀원들을 소개합니다!</p>
     </div>
 
-    <div id="deckRotate">
+    <div class="deckRotate">
 
-        <div class="card" style="width: 18rem;" id="cardFront">
-            <img src="https://postfiles.pstatic.net/MjAyNDA4MDVfNDAg/MDAxNzIyODQ5Nzg5Nzcz._3mzMKNQOf06NO-4oH8mjuBPsUPAXtKa-AFoSXIPDpEg.EyaLNqmisDSE4lo_Tdqp8Nxw4N93DtSkXT9r6VIuuQgg.JPEG/KakaoTalk_Photo_2024-08-05-16-48-48.jpeg?type=w773" class="card-img-top" alt="..."
-                id="cards">
-            <div class="card-body">
-                <h5 class="card-title">김진수</h5>
-                <p class="card-text">blahblahblahblahblahblahblahblahblahblahblahblalahblahblahbla</p>
+        <div class="card">
+            <div class="cardImageSlot">
+                <img src="/Users/qui2dty/Desktop/박새로이.webp" alt="" class="picture">
             </div>
         </div>
 
+        <div class="card">
+            <div class="cardImageSlot">
+                <img src="/Users/qui2dty/Desktop/김다미.webp" alt="" class="picture">
+            </div>
+        </div>
 
+        <div class="card">
+            <div class="cardImageSlot">
+                <img src="/Users/qui2dty/Desktop/이름이.webp" alt="" class="picture">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="cardImageSlot">
+                <img src="/Users/qui2dty/Desktop/뭐였지.webp" alt="" class="picture">
+            </div>
+        </div>
 
     </div>
+
 
 
 </body>
