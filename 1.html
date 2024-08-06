@@ -82,12 +82,51 @@
         .card-link:hover {
             color: whitesmoke;
         }
+
+        .modal{
+            position:absolute;
+            display:none;
+            
+            justify-content: center;
+            top:0;
+            left:0;
+
+            width:100%;
+            height:100%;
+
+            
+
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal_body{
+            position:absolute;
+            top:50%; 
+        
+
+            width:400px;  
+            height:600px;  
+
+            padding:40px;  
+
+            text-align: center;
+
+            background-color: rgb(255,255,255); 
+            border-radius:10px; 
+            box-shadow:0 2px 3px 0 rgba(34,36,38,0.15);
+
+            transform:translateY(-50%); 
+        }
+
+
+
     </style>
 
     <script>
         function PopUp() {
             alert('따란~');
         }
+
     </script>
 </head>
 
@@ -165,7 +204,6 @@
         </div>
 
     </div>
-
 
 </body>
 
