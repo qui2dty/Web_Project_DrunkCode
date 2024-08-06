@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
@@ -9,15 +10,115 @@
             margin: 0;
         }
         .content {
-            padding: 20px;
+            padding: 40px;
+            text-align: -webkit-center;
         }
-    </style></head><body>
+        .content-box{
+            width: 60%;
+            height:40vw;
+            background-color: #aea1ff;
+            padding: 40px;
+            align-content: center;
+            text-align: center;
+        }
+        .content-box p{
+            font-size: 20px;
+            margin-top: 2px;
+            margin-bottom: 0;
+        }
+        .bulb{
+            position: absolute;
+            top:7%;
+            left: 7%;
+            width:15%;
+            transform: rotate(-25deg);
+        }
+        .scribble{
+            position: absolute;
+            bottom:20%;
+            right: 7%;
+            width:15%;
+            transform: rotate(25deg);
+        }
+        @media (min-width:1440px){
+            h1{
+                font-size: 40px;
+            }
+            .content-box p{
+                font-size: 30px;
+            }
+            .bulb{
+            top:5%;
+            left: 7%;
+            width:15%;
+            transform: rotate(-25deg);
+            }
+            .scribble{
+            bottom:30%;
+            right: 7%;
+            width:15%;
+            transform: rotate(25deg);
+            }
+        }
+        @media (min-width:1620px){
+            h1{
+                font-size: 50px;
+            }
+            .content-box{
+                height:30vw;
+            }
+            .content-box p{
+                font-size: 30px;
+            }
+            .bulb{
+            top:8%;
+            left: 7%;
+            width:15%;
+            transform: rotate(-25deg);
+            }
+            .scribble{
+            bottom:-10%;
+            right: 7%;
+            width:15%;
+            transform: rotate(25deg);
+            }
+        }
+        @media (min-width:2560px){
+            h1{
+                font-size: 60px;
+            }
+            .content-box p{
+                font-size: 50px;
+            }
+            .bulb{
+            top:4%;
+            left: 7%;
+            width:15%;
+            transform: rotate(-25deg);
+            }
+            .scribble{
+            bottom:35%;
+            right: 7%;
+            width:15%;
+            transform: rotate(25deg);
+            }
+        }
+    </style>
+</head>
 
+<body>
 <div id="topmenu"></div>
 
 <div class="content">
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page of the website.</p></div>
+    <h1 style="text-align: center;">저희 취중코오딩은</h1>
+    <img class="bulb" src="../Source/Bulb.png">
+    <div class="content-box">
+        <p>프로젝트를 진행하면서 필요한 역량을 함께 키우며,</p>
+        <p>끊임없이 공부할 것을 약속합니다.</p>
+        <p>개발자로서 성장하는 모습을 함께 지켜봐주세요!</p>
+    </div>
+    <img class="scribble" src="../Source/Scribble.png">
+</div>
 
 <script>
     $(document).ready(function () {
@@ -28,4 +129,5 @@
         })
 </script>
 
-</body></html>
+</body>
+</html>
