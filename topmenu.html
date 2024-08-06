@@ -2,14 +2,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body{
+            background-color: #c6bdff;
+        }
         .top-menu {
-            background-color: #333;
+            background-color: #bdadff;
             overflow: hidden;
+        }
+        .top-menu img{
+            width: 50px;
+            height: 50px;
+            float: left;
+            padding-right:10px;
         }
         .top-menu a {
             float: left;
             display: block;
-            color: white;
+            color: black;
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
@@ -18,10 +27,34 @@
             background-color: #ddd;
             color: black;
         }
+        @media (min-width:1440px){
+            .top-menu img{
+            width: 70px;
+            height: 70px;
+            float: left;
+            padding-right:10px;
+            }
+            .top-menu a {
+            font-size: 30px;
+            padding: 20px 26px;
+            }
+        }
+        @media (min-width:2560px){
+            .top-menu img{
+            width: 100px;
+            height: 100px;
+            float: left;
+            padding-right:10px;
+            }
+            .top-menu a {
+            font-size: 50px;
+            padding: 20px 26px;
+            }
+        }
     </style></head><body>
     <div class="top-menu">
-        <a href="#home">Home</a>
-        <a href="#team">Team</a>
+        <img src="../Source/Logo.png">
+        <a href="./home.html">Team</a>
         <a href="./member.html">Member</a>
-        <a href="#news">News</a>
+        <a href="#news">Blog</a>
     </div></body></html>
