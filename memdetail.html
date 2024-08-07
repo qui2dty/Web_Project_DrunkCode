@@ -19,6 +19,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+
+    <!-- 비밀번호 유효성 검사 -->
+    <script src="password.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 
@@ -32,6 +35,7 @@
         /* 배경색 설정 */
         body {
             background-color: #C6BDFF;
+            text-align: center;
         }
 
         .container-fluid {
@@ -47,7 +51,7 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             display: none;
-            background-color: #FFF2E9;
+            background-color: #fff;
         }
 
         .form-floating>input {
@@ -128,12 +132,12 @@
         }
 
         /* 멤버 추가 저장 버튼 */
-        .btn-danger {
+        .btn {
             background-color: #BDADFF;
             border-color: #BDADFF;
         }
 
-        .btn-danger:hover {
+        .btn:hover {
             background-color: #A697DF;
             border-color: #A697DF;
         }
@@ -147,12 +151,12 @@
         .card:hover {
             transform: translateY(-8px);
         }
+
     </style>
 </head>
 
 <body>
-
-    <!-- 멤버 정보 모달 -->
+    <!-- 팀원 상세 정보 모달 -->
     <div class="modal fade" id="memberInfoModal" tabindex="-1" aria-labelledby="memberInfoModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -173,7 +177,7 @@
         </div>
     </div>
 
-    <!-- 멤버 수정 모달 -->
+    <!-- 팀원 정보 수정 모달 -->
     <div class="modal fade" id="memberEditModal" tabindex="-1" aria-labelledby="memberEditModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -203,7 +207,38 @@
         </div>
     </div>
 
-    <!-- 멤버 추가 입력 폼 -->
+
+    <!-- 비밀번호 유효성 검사 -->
+    <div class="modal fade" id="checkpwModal" tabindex="-1" aria-labelledby="checkpwModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberEditModalLabel">비밀번호 입력</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="modal-pw-input" placeholder="비밀번호">
+                        <label for="modal-pw-input">비밀번호</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="checkbtn" type="button" class="btn">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 팀원 카드 섹션 -->
+    <div class="mycards">
+        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- firebase 데이터 조회 카드 추가 -->
+        </div>
+    </div>
+
+    <!-- 팀원 추가 입력 폼 -->
     <div class="mypostingbox" id="addmemberbox">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="image" placeholder="사진 URL">
@@ -217,18 +252,12 @@
             <input type="text" class="form-control" id="intro" placeholder="소개">
             <label for="intro">소개</label>
         </div>
-        
+
         <div class="mybtn">
-            <button id="savebtn" type="button" class="btn btn-danger">저장</button>
+            <button id="savebtn" type="button" class="btn btn-danger">추가하기</button>
         </div>
     </div>
 
-    <!-- 멤버 카드 섹션 -->
-    <div class="mycards">
-        <div id="card" class="row row-cols-1 row-cols-md-4 g-4">
-            <!-- firebase 데이터 조회 카드 추가 -->
-        </div>
-    </div>
 
     <div>
         <button id="addbtn" class="btn btn-outline-light" type="button">멤버 추가하기</button>
@@ -275,14 +304,13 @@
             });
         });
 
-        let currentEditCard = null;
+        let thisCard = null;
 
-
-        // 멤버 정보 모달 표시 시 데이터 설정
+        // 멤버 상세 정보 모달 데이터 설정
         $('#memberInfoModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var card = button.closest('.card');
-            currentEditCard = card;
+            thisCard = card;
             var image = card.find('.card-img-top').attr('src');
             var name = card.find('.card-title').text();
 
@@ -291,20 +319,37 @@
             $('#info-modal-intro').text(`${card.data('intro')}`);   // 소개
         });
 
-
-        // 수정 버튼 클릭 시 수정 모달 표시
+        // 수정 버튼 클릭 시 비밀번호 확인 모달 활성화
         $('#editbtn').click(function () {
             $('#memberInfoModal').modal('hide');
-            var card = currentEditCard;
-            var image = card.find('.card-img-top').attr('src');
-            var name = card.find('.card-title').text();
-            var intro = card.data('intro');
+            $('#checkpwModal').modal('show');
+        });
 
-            $('#modal-image-input').val(image);
-            $('#modal-name-input').val(name);
-            $('#modal-intro-input').val(intro);
 
-            $('#memberEditModal').modal('show');
+        // 비밀번호 확인 시 팀원 정보 수정 모달 활성화
+        $('#checkbtn').click(function (){
+            let adminpw = 'drunkcode'; //임의로 비밀번호 설정
+
+            //비밀번호 맞는지 확인
+            if( document.getElementById('modal-pw-input').value == adminpw ) {
+                
+                $('#checkpwModal').modal('hide');
+                document.getElementById('modal-pw-input').value = null;
+
+                var card = thisCard;
+                var image = card.find('.card-img-top').attr('src');
+                var name = card.find('.card-title').text();
+                var intro = card.data('intro');
+                
+                $('#modal-image-input').val(image);
+                $('#modal-name-input').val(name);
+                $('#modal-intro-input').val(intro);
+
+                $('#memberEditModal').modal('show');
+            } else {
+                alert('비밀번호가 일치하지 않습니다.');
+                document.getElementById('modal-pw-input').value = null;
+            }
         });
 
 
@@ -339,7 +384,7 @@
         // 팀원 정보 수정 Firestore 업데이트
         $('#save-modal-btn').click(async function () {
             try {
-                let id = currentEditCard.data('id');
+                let id = thisCard.data('id');
                 let image = $('#modal-image-input').val();
                 let name = $('#modal-name-input').val();
                 let intro = $('#modal-intro-input').val();
@@ -351,9 +396,9 @@
                     intro: intro
                 });
 
-                currentEditCard.find('.card-img-top').attr('src', image);
-                currentEditCard.find('.card-title').text(name);
-                currentEditCard.data('intro', intro);
+                thisCard.find('.card-img-top').attr('src', image);
+                thisCard.find('.card-title').text(name);
+                thisCard.data('intro', intro);
 
                 $('#memberEditModal').modal('hide');
                 alert('수정 완료');
@@ -368,14 +413,14 @@
         $("#delbtn").click(async function () {
 
             if (confirm('삭제하시겠습니까?') == true) {
-                const id = currentEditCard.data('id');  // 현재 카드의 ID 가져오기
-
+                const id = thisCard.data('id');  // 현재 카드의 ID 가져오기
+                
                 try {
                     // 파이어베이스에서 데이터 삭제
                     await deleteDoc(doc(db, "teams", id));
 
                     // 웹에서 카드 제거 (CSS 별명 넣기)
-                    currentEditCard.closest('.col').remove();
+                    thisCard.closest('.col').remove();
                     $('#memberInfoModal').modal('hide');
                     alert('삭제 완료!');
 
@@ -386,8 +431,8 @@
             } else {
                 alert('취소하였습니다.');
             }
-
         });
+
     </script>
 
 </body>
