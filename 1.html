@@ -4,20 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="../static/firebase2.js" type="module"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>member</title>
+        <!-- jQuery 라이브러리 추가 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap CSS 추가 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Bootstrap js 추가 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Firebase 라이브러리 추가 -->
+        <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+        <!-- 비밀번호 유효성 검사 -->
+        <script src="password.js"></script>
+
     <style>
         /*폰트 적용*/
         @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
-        * {
+      /*  * {
             font-family: "Gowun Dodum", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        } */
+
+        * {
+            font-family: "IBM Plex Sans KR", sans-serif;
             font-weight: 400;
             font-style: normal;
         }
@@ -30,14 +43,69 @@
 
         body {
             margin: 0;
+            background-color: #C6BDFF;
         }
 
         h1,
         h2,
         h3,
         h4,
-        p {
+        p{
             margin: 0;
+        }
+
+        body{
+            background-color: #c6bdff;
+        }
+        .top-menu {
+            background-color: #bdadff;
+            overflow: hidden;
+        }
+        .top-menu img{
+            width: 50px;
+            height: 50px;
+            float: left;
+            padding-right:10px;
+        }
+        .top-menu a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .top-menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        @media (min-width:1440px){
+            .top-menu img{
+            width: 70px;
+            height: 70px;
+            float: left;
+            padding-right:10px;
+            }
+            .top-menu a {
+            font-size: 30px;
+            padding: 20px 26px;
+            }
+        }
+        @media (min-width:2560px){
+            .top-menu img{
+            width: 100px;
+            height: 100px;
+            float: left;
+            padding-right:10px;
+            }
+            .top-menu a {
+            font-size: 50px;
+            padding: 20px 26px;
+            }
+        }
+        .top-menu > div {
+            display: inline-block;
+            
         }
 
         /*레이아웃*/
@@ -79,11 +147,11 @@
         /*카드 마우스 반응*/
         .card:hover {
             transition: background-color 0.5s;
-            background-color: rgba(2, 102, 255, 0.7);
+            background-color: rgba(68, 56, 95, 0.6);
         }
 
         .card-link:hover {
-            color: whitesmoke;
+            color: beige;
         }
 
         .modal-body {
@@ -184,6 +252,18 @@
             background-color: rgba(0, 0, 0, 0);
             color: rgba(0, 0, 0, 0);
         }
+
+        .mypostingbox {
+            width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: none;
+            background-color: #fff;
+        }
+
+
     </style>
 
     <script>
@@ -197,8 +277,8 @@
 
 <body>
 
-    <!--상단 메뉴바-->
-    <header class="d-flex justify-content-center py-3">
+    <!--상단 메뉴바 -->
+  <!--  <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Team</a></li>
@@ -206,6 +286,28 @@
             <li class="nav-item"><a href="#" class="nav-link">News</a></li>
         </ul>
     </header>
+    -->
+  <!--
+    <div class="top-menu">
+        <img src="../Source/Logo.png">
+        
+        
+
+
+
+    </div> -->
+
+    <div class="top-menu">
+        |
+        <div><a href="./home.html">TEAM</a></div>
+        |
+        <div><a href="./member.html">MEMBER</a></div>
+        |
+        <div><a href="#news">BLOG</a></div>
+        |
+    </div>
+
+
 
     <!--팀명 타이포 헤드라인-->
     <div class="headline">
@@ -214,9 +316,10 @@
     </div>
 
     <!--하단 카드존-->
-    <div class="deckRotate">
+    <div class="deckRotate" id="Rotater">
 
-        <button type="button" class="btn CardTouch" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+    <!---   <button type="button" class="btn CardTouch" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div class="card" style="width: 18rem;">
                 <img src="/Users/qui2dty/Desktop/박새로이.webp" class="card-img-top" alt="...">
 
@@ -241,52 +344,9 @@
                 </div>
             </div>
         </button>
-        <button type="button" class="btn CardTouch" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <div class="card" style="width: 18rem;" >
-                <img src="/Users/qui2dty/Desktop/박새로이.webp" class="card-img-top" alt="...">
-
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">NAME</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">GitHub</a>
-                    <a href="#" class="card-link">Blog</a>
-                </div>
-            </div>
-        </button>
-        <button type="button" class="btn CardTouch" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <div class="card" style="width: 18rem;">
-                <img src="/Users/qui2dty/Desktop/박새로이.webp" class="card-img-top" alt="...">
-
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">NAME</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">GitHub</a>
-                    <a href="#" class="card-link">Blog</a>
-                </div>
-            </div>
-        </button>
-
+-> 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <!-- 모달을 실행할 버튼 
@@ -295,14 +355,7 @@
     </button>
     -->
 
-
-
-
-
-
-
-
-    <!-- 모달 -->
+    <!-- 팀원 상세 모달 -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -335,8 +388,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" id="delbtn" class="btn btn-secondary" data-bs-dismiss="modal">Delete</button>
+                    <button type="button" id="editbtn" class="btn btn-primary">Edit</button>  <!--모달 등장 -->
                 </div>
 
 
@@ -344,6 +397,259 @@
         </div>
     </div>
 
-</body>
+    <!-- 팀원 정보 수정 모달 -->
+        <div class="modal fade" id="memberEditModal" tabindex="-1" aria-labelledby="memberEditModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberEditModalLabel">팀원 정보 수정</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" id="modal-image-input" class="form-control" placeholder="사진 URL">
+                        <label for="modal-image-input">사진 URL</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" id="modal-name-input" class="form-control" placeholder="이름">
+                        <label for="modal-name-input">이름</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" id="modal-intro-input" class="form-control" placeholder="소개">
+                        <label for="modal-intro-input">소개</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-modal-btn" type="button" class="btn">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- 비밀번호 유효성 검사 -->
+    <div class="modal fade" id="checkpwModal" tabindex="-1" aria-labelledby="checkpwModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberEditModalLabel">비밀번호 입력</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="modal-pw-input" placeholder="비밀번호">
+                        <label for="modal-pw-input">비밀번호</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="checkbtn" type="button" class="btn">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 팀원 추가 입력 폼 -->
+    <div class="mypostingbox" id="addmemberbox">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="image" placeholder="사진 URL">
+            <label for="image">사진 URL</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" placeholder="이름">
+            <label for="name">이름</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="intro" placeholder="소개">
+            <label for="intro">소개</label>
+        </div>
+
+        <div class="mybtn">
+            <button id="savebtn" type="button" class="btn btn-danger">추가하기</button>
+        </div>
+    </div>
+
+
+    <div>
+        <button id="addbtn" class="btn btn-outline-light" type="button">멤버 추가하기</button>
+    </div>
+
+    <!-- Firebase 초기화 및 Firestore 사용을 위한 스크립트 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+        // Firebase 초기화
+        const firebaseConfig = {
+            apiKey: "AIzaSyDm5y9osqExosFHFTZGfYvv2Olp0N87YOE",
+            authDomain: "sparta-952e0.firebaseapp.com",
+            projectId: "sparta-952e0",
+            storageBucket: "sparta-952e0.appspot.com",
+            messagingSenderId: "997683838612",
+            appId: "1:997683838612:web:660a308656015718197e81",
+            measurementId: "G-MBBHJ52JEG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Firestore에서 멤버 정보를 가져와 카드 생성
+        $(document).ready(async function () {
+            const querySnapshot = await getDocs(collection(db, "teams"));
+            querySnapshot.forEach((doc) => {
+                const member = doc.data();
+                let newCard = `
+                           <button type="button" class="btn CardTouch" data-bs-toggle="modal" data-bs-target="#exampleModal"data-id="${doc.id}">
+                             <div class="card" style="width: 18rem;">
+                            <img src="${member.image}" class="card-img-top" alt="...">
+
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">"${member.name}"</li>
+                            </ul>
+                             <div class="card-body">
+                            <a href="#" class="card-link">"${member.name}"</a>
+                            <a href="#" class="card-link">"${member.name}"</a>
+                </div>
+            </div>
+        </button>
+                `;
+                console.log(newCard);
+                $('#Rotater').append(newCard);
+            });
+        });
+
+        let thisCard = null;
+
+        // 멤버 상세 정보 모달 데이터 설정
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var card = button.closest('.btn.CardTouch');
+            thisCard = card;
+            var image = card.find('.card-img-top').attr('src');
+            var name = card.find('.card-title').text();
+
+            $('#exampleModalLabel').text(name);                  // 이름
+            $('#info-modal-image').attr('src', image);              // 사진
+            $('#info-modal-intro').text(`${card.data('intro')}`);   // 소개
+        });
+
+        // 수정 버튼 클릭 시 비밀번호 확인 모달 활성화
+        $('#editbtn').click(function () {
+            $('#exampleModal').modal('hide');
+            $('#checkpwModal').modal('show');
+        });
+
+
+        // 비밀번호 확인 시 팀원 정보 수정 모달 활성화
+        $('#checkbtn').click(function (){
+            let adminpw = 'drunkcode'; //임의로 비밀번호 설정
+
+            //비밀번호 맞는지 확인
+            if( document.getElementById('modal-pw-input').value == adminpw ) {
+                
+                $('#checkpwModal').modal('hide');
+                document.getElementById('modal-pw-input').value = null;
+
+                var card = thisCard;
+                var image = card.find('.card-img-top').attr('src');
+                var name = card.find('.card-title').text();
+                var intro = card.data('intro');
+                
+                $('#modal-image-input').val(image);
+                $('#modal-name-input').val(name);
+                $('#modal-intro-input').val(intro);
+
+                $('#memberEditModal').modal('show');
+            } else {
+                alert('비밀번호가 일치하지 않습니다.');
+                document.getElementById('modal-pw-input').value = null;
+            }
+        });
+
+
+        // 멤버 추가 버튼 클릭 시 입력 폼 활성화
+        $('#addbtn').click(function () {
+            $('#addmemberbox').toggle();
+        });
+        
+
+        // 멤버 추가 데이터 Firestore에 저장
+        $('#savebtn').click(async function () {
+            try {
+                let image = $('#image').val();
+                let name = $('#name').val();
+                let intro = $('#intro').val();
+
+                let doc = {
+                    'image': image,
+                    'name': name,
+                    'intro': intro
+                };
+                await addDoc(collection(db, "teams"), doc);
+                alert('저장 완료');
+                window.location.reload();
+            } catch (error) {
+                console.error("저장 실패:", error);
+                alert('저장 실패');
+            }
+        });
+
+
+        // 팀원 정보 수정 Firestore 업데이트
+        $('#save-modal-btn').click(async function () {
+            try {
+                let id = thisCard.data('id');
+                let image = $('#modal-image-input').val();
+                let name = $('#modal-name-input').val();
+                let intro = $('#modal-intro-input').val();
+
+                let docRef = doc(db, "teams", id);
+                await updateDoc(docRef, {
+                    image: image,
+                    name: name,
+                    intro: intro
+                });
+
+                thisCard.find('.card-img-top').attr('src', image);
+                thisCard.find('.card-title').text(name);
+                thisCard.data('intro', intro);
+
+                $('#memberEditModal').modal('hide');
+                alert('수정 완료');
+            } catch (error) {
+                console.error("수정 실패:", error);
+                alert('수정 실패');
+            }
+        });
+
+
+        // 삭제하기 
+        $("#delbtn").click(async function () {
+
+            if (confirm('삭제하시겠습니까?') == true) {
+                const id = thisCard.data('id');  // 현재 카드의 ID 가져오기
+                
+                try {
+                    // 파이어베이스에서 데이터 삭제
+                    await deleteDoc(doc(db, "teams", id));
+                    console.log(id);
+                    // 웹에서 카드 제거 (CSS 별명 넣기)
+                    thisCard.closest('.CardTouch').remove();
+                    $('#exampleModal').modal('hide');
+                    alert('삭제 완료!');
+
+                } catch (error) {
+                    console.error("Error removing document: ", error);
+                    alert('삭제 실패');
+                }
+            } else {
+                alert('취소하였습니다.');
+            }
+        });
+
+    </script>
+
+</body>
 </html>
