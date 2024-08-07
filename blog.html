@@ -9,29 +9,52 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-     .blogcard{
-        background-color: green;
-     }
+        body{
+            background-color: #AEA1FF;
+        }
+        .mytitle{
+            background-color: #AEA1FF;
+            height: 250px;
+            margin: ;
+            color: black;
 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blogcard1 {
+            background-color: #AEA1FF;
+            width: 80%;
+            margin: 0px auto 50px auto;
+        }
+        .blogcard2 {
+            background-color: #BDADFF;
+            width: 80%;
+            margin: 50px auto 0px auto;
+        }
     </style>
 </head>
 
 <body>
-    <div class="blogcard">
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
+    <div class="mytitle">
+        <h1>취중코오딩의 멤버 블로그</h1>
+    </div>
+    <div class="blogcard1">
+        <div class="row row-cols-1 row-cols-md-2 g-2">
+            <div class="row g-0"style ="background-color: #FFFFFF">
                 <div class="col-md-4">
                     <img src="..." class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">제목이 뭐가 중요해</h5>
-                        <p class="card-text">손원호의 블로그.</p>
+                        <h5 class="card-title">손원호의 블로그</h5>
+                        <p class="card-text">www.naver.com</p>
                         <p class="card-text"><small class="text-body-secondary">마지막 업데이트 방금.</small></p>
                     </div>
                 </div>
             </div>
-            <div class="row g-0">
+            <div class="row g-5" style ="background-color: #FFFFFF">
                 <div class="col-md-4">
                     <img src="..." class="img-fluid rounded-start" alt="...">
                 </div>
@@ -44,6 +67,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>    
+    <div class="blogcard2">
+        <div class="row row-cols-1 row-cols-md-2 g-2">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="..." class="img-fluid rounded-start" alt="...">
