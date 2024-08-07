@@ -9,13 +9,12 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        body{
+        body {
             background-color: #AEA1FF;
         }
-        .mytitle{
-            background-color: #AEA1FF;
+
+        .mytitle {
             height: 250px;
-            margin: ;
             color: black;
 
             display: flex;
@@ -23,26 +22,36 @@
             align-items: center;
             justify-content: center;
         }
+
         .blogcard1 {
-            background-color: #AEA1FF;
             width: 80%;
-            margin: 0px auto 50px auto;
+            margin: 0px auto 100px auto;
         }
+
         .blogcard2 {
-            background-color: #BDADFF;
             width: 80%;
-            margin: 50px auto 0px auto;
+            margin: 100px auto 0px auto;
         }
     </style>
 </head>
 
 <body>
+    <div id="topmenu"></div>
+    <script>
+        $(document).ready(function () {
+            $("#topmenu").load("/../topmenu.html", function () {
+                //페이지 별로 다른 메뉴 css 적용도 가능
+                document.getElementById("topmenu").classList.add("show");
+            });
+        })
+    </script>
     <div class="mytitle">
         <h1>취중코오딩의 멤버 블로그</h1>
     </div>
+    <div id="blog">
     <div class="blogcard1">
-        <div class="row row-cols-1 row-cols-md-2 g-2">
-            <div class="row g-0"style ="background-color: #FFFFFF">
+        <div class="row row-cols-1 row-cols-md-3 g-2" style="justify-content: space-evenly;">
+            <div class="row g-3" style="background-color:#BDADFF">
                 <div class="col-md-4">
                     <img src="..." class="img-fluid rounded-start" alt="...">
                 </div>
@@ -54,37 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-5" style ="background-color: #FFFFFF">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
-    <div class="blogcard2">
-        <div class="row row-cols-1 row-cols-md-2 g-2">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-0">
+            <div class="row g-3" style="background-color:#BDADFF">
                 <div class="col-md-4">
                     <img src="..." class="img-fluid rounded-start" alt="...">
                 </div>
@@ -99,6 +78,71 @@
             </div>
         </div>
     </div>
+    <div class="blogcard2">
+        <div class="row row-cols-1 row-cols-md-3 g-2" style="justify-content: space-evenly;">
+            <div class="row g-3" style="background-color:#BDADFF">
+                <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">손원호의 블로그</h5>
+                        <p class="card-text">www.naver.com</p>
+                        <p class="card-text"><small class="text-body-secondary">마지막 업데이트 방금.</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3" style="background-color:#BDADFF">
+                <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDm5y9osqExosFHFTZGfYvv2Olp0N87YOE",
+            authDomain: "sparta-952e0.firebaseapp.com",
+            projectId: "sparta-952e0",
+            storageBucket: "sparta-952e0.appspot.com",
+            messagingSenderId: "997683838612",
+            appId: "1:997683838612:web:660a308656015718197e81",
+            measurementId: "G-MBBHJ52JEG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        $(document).ready(async function () {
+            const querySnapshot = await getDocs(collection(db, "teams"));
+            querySnapshot.forEach((doc) => {
+                const memberData = doc.data();
+                let newBlog = `
+                    <div class="col-6" style="display: flex;">
+                        <img src="${memberData.image}" style="width:30%;">
+                        <div class="p-5 border bg-light"style="width:70%;cursor:pointer;"onclick="location.href='${memberData.github}';">${memberData.name}님의 깃허브</div>
+                    </div>
+                `;
+                console.log(newBlog);
+                $('#blog').append(newBlog);
+            });
+        });
+    </script>
+
 </body>
 
 </html>
