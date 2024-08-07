@@ -4,106 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
     <title>Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
-        .content {
-            padding: 40px;
-            text-align: -webkit-center;
-        }
-        .content-box{
-            width: 60%;
-            height:40vw;
-            background-color: #aea1ff;
-            padding: 40px;
-            align-content: center;
-            text-align: center;
-        }
-        .content-box p{
-            font-size: 20px;
-            margin-top: 2px;
-            margin-bottom: 0;
-        }
-        .bulb{
-            position: absolute;
-            top:7%;
-            left: 7%;
-            width:15%;
-            transform: rotate(-25deg);
-        }
-        .scribble{
-            position: absolute;
-            bottom:20%;
-            right: 7%;
-            width:15%;
-            transform: rotate(25deg);
-        }
-        @media (min-width:1440px){
-            h1{
-                font-size: 40px;
-            }
-            .content-box p{
-                font-size: 30px;
-            }
-            .bulb{
-            top:5%;
-            left: 7%;
-            width:15%;
-            transform: rotate(-25deg);
-            }
-            .scribble{
-            bottom:30%;
-            right: 7%;
-            width:15%;
-            transform: rotate(25deg);
-            }
-        }
-        @media (min-width:1620px){
-            h1{
-                font-size: 50px;
-            }
-            .content-box{
-                height:30vw;
-            }
-            .content-box p{
-                font-size: 30px;
-            }
-            .bulb{
-            top:8%;
-            left: 7%;
-            width:15%;
-            transform: rotate(-25deg);
-            }
-            .scribble{
-            bottom:-10%;
-            right: 7%;
-            width:15%;
-            transform: rotate(25deg);
-            }
-        }
-        @media (min-width:2560px){
-            h1{
-                font-size: 60px;
-            }
-            .content-box p{
-                font-size: 50px;
-            }
-            .bulb{
-            top:4%;
-            left: 7%;
-            width:15%;
-            transform: rotate(-25deg);
-            }
-            .scribble{
-            bottom:35%;
-            right: 7%;
-            width:15%;
-            transform: rotate(25deg);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -113,9 +14,7 @@
     <h1 style="text-align: center;">저희 취중코오딩은</h1>
     <img class="bulb" src="../Source/Bulb.png">
     <div class="content-box">
-        <p>프로젝트를 진행하면서 필요한 역량을 함께 키우며,</p>
-        <p>끊임없이 공부할 것을 약속합니다.</p>
-        <p>개발자로서 성장하는 모습을 함께 지켜봐주세요!</p>
+        <p id="team-content"></p>
     </div>
     <img class="scribble" src="../Source/Scribble.png">
 </div>
@@ -128,6 +27,37 @@
             });
         })
 </script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyDm5y9osqExosFHFTZGfYvv2Olp0N87YOE",
+        authDomain: "sparta-952e0.firebaseapp.com",
+        databaseURL: "https://sparta-952e0-default-rtdb.firebaseio.com",
+        projectId: "sparta-952e0",
+        storageBucket: "sparta-952e0.appspot.com",
+        messagingSenderId: "997683838612",
+        appId: "1:997683838612:web:660a308656015718197e81",
+        measurementId: "G-MBBHJ52JEG"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    $(document).ready(async function () {
+            const querySnapshot = await getDocs(collection(db, "team"));
+            querySnapshot.forEach((doc) => {
+                const message = doc.data();
+                // console.log(`${message.message} => ${doc.data()}`);
+                document.getElementById("team-content").innerHTML=message.message;
+            });
+        });
+  </script>
 </body>
 </html>

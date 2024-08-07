@@ -1,0 +1,156 @@
+body {
+    background-color: #c6bdff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+/*home.html*/
+.content {
+    padding: 40px;
+    text-align: -webkit-center;
+}
+.content-box{
+    width: 60%;
+    height:40vw;
+    background-color: #aea1ff;
+    padding: 40px;
+    align-content: center;
+    text-align: center;
+}
+.content-box p{
+    font-size: 20px;
+    margin-top: 2px;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    margin-bottom: 0;
+}
+.bulb{
+    position: absolute;
+    top:7%;
+    left: 7%;
+    width:15%;
+    transform: rotate(-25deg);
+}
+.scribble{
+    position: absolute;
+    bottom:20%;
+    right: 7%;
+    width:15%;
+    transform: rotate(25deg);
+}
+
+/*topmenu.html*/
+.top-menu {
+    background-color: #bdadff;
+    overflow: hidden;
+}
+.top-menu img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    padding-right:10px;
+}
+.top-menu a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+.top-menu a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+@media (min-width:1440px){
+    /*home.html*/
+    h1{
+        font-size: 40px;
+    }
+    .content-box p{
+        font-size: 30px;
+    }
+    .bulb{
+    top:5%;
+    left: 7%;
+    width:15%;
+    transform: rotate(-25deg);
+    }
+    .scribble{
+    bottom:30%;
+    right: 7%;
+    width:15%;
+    transform: rotate(25deg);
+    }
+
+    /*topmenu.html*/
+    .top-menu img{
+        width: 70px;
+        height: 70px;
+        float: left;
+        padding-right:10px;
+        }
+        .top-menu a {
+        font-size: 30px;
+        padding: 20px 26px;
+        }
+}
+
+@media (min-width:1620px){
+    /*home.html*/
+    h1{
+        font-size: 50px;
+    }
+    .content-box{
+        height:30vw;
+    }
+    .content-box p{
+        font-size: 30px;
+    }
+    .bulb{
+    top:8%;
+    left: 7%;
+    width:15%;
+    transform: rotate(-25deg);
+    }
+    .scribble{
+    bottom:-10%;
+    right: 7%;
+    width:15%;
+    transform: rotate(25deg);
+    }
+}
+
+@media (min-width:2560px){
+    /*home.html*/
+    h1{
+        font-size: 60px;
+    }
+    .content-box p{
+        font-size: 50px;
+    }
+    .bulb{
+    top:4%;
+    left: 7%;
+    width:15%;
+    transform: rotate(-25deg);
+    }
+    .scribble{
+    bottom:35%;
+    right: 7%;
+    width:15%;
+    transform: rotate(25deg);
+    }
+
+    /*topmenu.html*/
+    .top-menu img{
+        width: 100px;
+        height: 100px;
+        float: left;
+        padding-right:10px;
+    }
+    .top-menu a {
+        font-size: 50px;
+        padding: 20px 26px;
+    }
+}
