@@ -9,10 +9,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        body {
-            background-color: #AEA1FF;
-        }
-
         .mytitle {
             height: 250px;
             color: black;
@@ -22,20 +18,18 @@
             align-items: center;
             justify-content: center;
         }
-
-        .blogcard1 {
-            width: 80%;
-            margin: 0px auto 100px auto;
-        }
-
-        .blogcard2 {
-            width: 80%;
-            margin: 100px auto 0px auto;
-        }
     </style>
 </head>
 
-<body>
+<body style="background-color: #AEA1FF;">
+    <div id="topmenu"></div>
+    <div class="mytitle">
+        <h1>취중코오딩의 멤버 블로그</h1>
+    </div>
+    <div class="blogcard" style="margin: 50px 25px;">
+        <div id="blog" class="row g-3">
+        </div>
+    </div>
     <div id="topmenu"></div>
     <script>
         $(document).ready(function () {
@@ -45,69 +39,6 @@
             });
         })
     </script>
-    <div class="mytitle">
-        <h1>취중코오딩의 멤버 블로그</h1>
-    </div>
-    <div id="blog">
-    <div class="blogcard1">
-        <div class="row row-cols-1 row-cols-md-3 g-2" style="justify-content: space-evenly;">
-            <div class="row g-3" style="background-color:#BDADFF">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">손원호의 블로그</h5>
-                        <p class="card-text">www.naver.com</p>
-                        <p class="card-text"><small class="text-body-secondary">마지막 업데이트 방금.</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-3" style="background-color:#BDADFF">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="blogcard2">
-        <div class="row row-cols-1 row-cols-md-3 g-2" style="justify-content: space-evenly;">
-            <div class="row g-3" style="background-color:#BDADFF">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">손원호의 블로그</h5>
-                        <p class="card-text">www.naver.com</p>
-                        <p class="card-text"><small class="text-body-secondary">마지막 업데이트 방금.</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-3" style="background-color:#BDADFF">
-                <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import { getAuth, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
@@ -126,7 +57,7 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        
+
         $(document).ready(async function () {
             const querySnapshot = await getDocs(collection(db, "teams"));
             querySnapshot.forEach((doc) => {
