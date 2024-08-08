@@ -11,8 +11,8 @@
 </head>
 <body style="background-color: #c6bdff;">
     <div id="topmenu"></div>
-    <div class="mytitle" style="text-align: center; margin-top: 5%;">
-        <h1>취중코오딩 멤버 블로그</h1>
+    <div class="mytitle" style="text-align: center;">
+        <h1>취중코오딩 멤버 깃허브</h1>
     </div>
     <div class="container" style="margin-top: 50px;">
         <div id="blog" class="row g-5">
@@ -54,7 +54,7 @@
                 let newBlog = `
                     <div class="col-6" style="display: flex;">
                         <img src="${memberData.image}" style="width:30%;">
-                        <div class="p-5 border bg-light"style="width:70%;cursor:pointer;"onclick="location.href='${memberData.github}';">${memberData.name}님의 블로그</div>
+                        <div class="p-5 border bg-light"style="width:70%;cursor:pointer;"onclick="location.href='${memberData.github}';">${memberData.name}님의 깃허브</div>
                     </div>
                 `;
                 console.log(newBlog);
