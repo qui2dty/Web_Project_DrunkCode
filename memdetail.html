@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>취중코오딩</title>
+    <title>취중코오딩 : 팀원</title>
     <!-- 메뉴 css 불러오기 -->
     <link rel="stylesheet" href="./style.css">
 
@@ -16,128 +16,12 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Bootstrap js 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <!-- Firebase 라이브러리 추가 -->
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
-
-        /* 전체 폰트 설정 */
-        * {
-            font-family: "IBM Plex Sans KR", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        /* 기본 홈 설정 */
-        body {
-            background-color: #bfb8ee;
-            text-align: center;
-        }
-
-        /* 멤버 추가 입력 폼 스타일 */
-        .memberbox {
-            width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid transparent;
-            border-radius: 15px;
-            display: none;
-            background-color: #aba2e9;
-        }
-
-        /* div안에 있는 input 설정 (이렇게 해야 기본 색상이 바뀜) */
-        .form-floating>input {
-            background-color: transparent;
-            color: rgb(60, 50, 68);
-            border: 1px solid transparent;
-        }
-        .form-floating:focus {
-            background-color: transparent;
-        }
-        .form-floating>label {
-            color: #555;
-        }
-
-        /* input 클릭 시 설정 */
-        .form-control:focus {
-            background-color: transparent;
-            box-shadow:none;
-            border: 1px solid #6759a5;
-            color: rgb(60, 50, 68);
-        }
-        
-        /* 카드 스타일 */
-        .mycards {
-            width: 90%;
-            margin: 20px auto;
-        }
-        .card {
-            border-radius: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .card-img-top {
-            width: 100%;
-            height: auto;
-            max-height: 700px;
-            object-fit: cover;
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
-        }
-
-        /* 모달 스타일 */
-        .modal-content {
-            background-color: #c6bff3;
-            color: black;
-            border-radius: 10px;
-        }
-
-        /* 모달창에있는 선 지우기 */
-        .modal-header,
-        .modal-body,
-        .modal-footer {
-            border: none;
-        }
-
-        /* 기본 버튼 설정 */
-        .btn {
-            background-color: #8d83ce;
-            border-color: transparent;
-            color: white;
-        }
-        .btn:hover {
-            background-color: #7e71b3;
-            border-color: transparent;
-            color: white;
-        }
-        .btn:focus{
-            box-shadow:none;
-            outline: none;
-        }
- 
-        /* 멤버 추가하기 버튼 폼 설정 */
-        .savebtn {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-        }
-        .savebtn>button {
-            width: 100%;
-        }
-
-        /* 멤버 카드 이벤트 */
-        .card {
-            cursor: pointer;
-            transition: all 0.4s ease-out;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-    </style>
 </head>
 
 <body>
@@ -228,6 +112,11 @@
         </div>
     </div>
 
+    <!--팀명 타이포 헤드라인-->
+    <div class="headline">
+        <h1 class="teamName">취중코오딩</h1>
+        <p class="introduceMent">저희 팀원들을 소개합니다!</p>
+    </div>
 
     <!-- 팀원 카드 섹션 -->
     <div class="mycards">
@@ -317,7 +206,6 @@
             $('#memberInfoModalLabel').text(name);                              // 이름
             $('#info-modal-image').attr('src', image);                          // 사진
             $('#info-modal-intro').text(`${card.data('intro')}`);               // 소개
-            $("#info-modal-github").text(`깃허브 주소: ${card.data("github")}`); //깃허브
         });
 
         // 수정 버튼 클릭 시 비밀번호 확인 모달 활성화
@@ -346,6 +234,7 @@
                 $('#modal-image-input').val(image);
                 $('#modal-name-input').val(name);
                 $('#modal-intro-input').val(intro);
+                $('#modal-github-input').val(github);
 
                 $('#memberEditModal').modal('show');
             } else {
