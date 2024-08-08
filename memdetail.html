@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>취중코오딩</title>
+    <!-- 메뉴 css 불러오기 -->
+    <link rel="stylesheet" href="./style.css">
 
     <!-- jQuery 라이브러리 추가 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,8 +22,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
 
-    <!-- 비밀번호 유효성 검사 -->
-    <script src="password.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 
@@ -32,114 +32,100 @@
             font-style: normal;
         }
 
-        /* 배경색 설정 */
+        /* 기본 홈 설정 */
         body {
-            background-color: #C6BDFF;
+            background-color: #bfb8ee;
             text-align: center;
         }
 
-        .container-fluid {
-            background-color: rgba(68, 56, 95, 0.6);
-            border-radius: 10px;
-        }
-
         /* 멤버 추가 입력 폼 스타일 */
-        .mypostingbox {
+        .memberbox {
             width: 500px;
             margin: 20px auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
+            border: 1px solid transparent;
+            border-radius: 15px;
             display: none;
-            background-color: #fff;
+            background-color: #aba2e9;
         }
 
+        /* div안에 있는 input 설정 (이렇게 해야 기본 색상이 바뀜) */
         .form-floating>input {
             background-color: transparent;
-            color: black;
+            color: rgb(60, 50, 68);
+            border: 1px solid transparent;
         }
-
+        .form-floating:focus {
+            background-color: transparent;
+        }
         .form-floating>label {
             color: #555;
         }
 
-        .savebtn {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
+        /* input 클릭 시 설정 */
+        .form-control:focus {
+            background-color: transparent;
+            box-shadow:none;
+            border: 1px solid #6759a5;
+            color: rgb(60, 50, 68);
         }
-
-        .savebtn>button {
-            margin-right: 5px;
-            width: 100%;
-        }
-
+        
         /* 카드 스타일 */
         .mycards {
             width: 90%;
             margin: 20px auto;
         }
-
         .card {
-            border-radius: 15px;
+            border-radius: 50px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         .card-img-top {
             width: 100%;
             height: auto;
             max-height: 700px;
             object-fit: cover;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
         }
 
         /* 모달 스타일 */
         .modal-content {
-            background-color: #fff;
+            background-color: #c6bff3;
             color: black;
             border-radius: 10px;
         }
 
+        /* 모달창에있는 선 지우기 */
         .modal-header,
         .modal-body,
         .modal-footer {
             border: none;
         }
 
-        /* 삭제 수정 및 저장 버튼 */
+        /* 기본 버튼 설정 */
         .btn {
-            background-color: #BDADFF;
-            border-color: #BDADFF;
+            background-color: #8d83ce;
+            border-color: transparent;
             color: white;
         }
-
         .btn:hover {
-            background-color: #A697DF;
-            border-color: #A697DF;
+            background-color: #7e71b3;
+            border-color: transparent;
             color: white;
         }
-
-        .btn-outline-light {
-            color: #f8f9fa;
-            border-color: #f8f9fa;
+        .btn:focus{
+            box-shadow:none;
+            outline: none;
         }
-
-        .btn-outline-light:hover {
-            color: #212529;
-            background-color: #f8f9fa;
-            border-color: #f8f9fa;
+ 
+        /* 멤버 추가하기 버튼 폼 설정 */
+        .savebtn {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
         }
-
-        /* 멤버 추가 저장 버튼 */
-        .btn {
-            background-color: #BDADFF;
-            border-color: #BDADFF;
-        }
-
-        .btn:hover {
-            background-color: #A697DF;
-            border-color: #A697DF;
+        .savebtn>button {
+            width: 100%;
         }
 
         /* 멤버 카드 이벤트 */
@@ -147,7 +133,6 @@
             cursor: pointer;
             transition: all 0.4s ease-out;
         }
-
         .card:hover {
             transform: translateY(-8px);
         }
@@ -156,6 +141,15 @@
 </head>
 
 <body>
+    <div id="topmenu"></div>
+    <script>
+        $(document).ready(function () {
+                $("#topmenu").load("/../topmenu.html", function () {
+                //페이지 별로 다른 메뉴 css 적용도 가능
+                    document.getElementById("topmenu").classList.add("show");
+                });
+            })
+    </script>
     <!-- 팀원 상세 정보 모달 -->
     <div class="modal fade" id="memberInfoModal" tabindex="-1" aria-labelledby="memberInfoModalLabel"
         aria-hidden="true">
@@ -243,7 +237,7 @@
     </div>
 
     <!-- 팀원 추가 입력 폼 -->
-    <div class="mypostingbox" id="addmemberbox">
+    <div class="memberbox" id="addmemberbox">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="image" placeholder="사진 URL">
             <label for="image">사진 URL</label>
@@ -262,19 +256,18 @@
         </div>
 
         <div class="savebtn">
-            <button id="savebtn" type="button" class="btn btn-danger">추가하기</button>
+            <button id="savebtn" type="button" class="btn">추가하기</button>
         </div>
     </div>
 
 
     <div>
-        <button id="addbtn" class="btn btn-outline-light" type="button">멤버 추가하기</button>
+        <button id="addbtn" class="btn" type="button">멤버 추가하기</button>
     </div>
 
     <!-- Firebase 초기화 및 Firestore 사용을 위한 스크립트 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-        import { getAuth, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
         // Firebase 초기화
@@ -289,7 +282,6 @@
         };
 
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
 
         // Firestore에서 멤버 정보를 가져와 카드 생성

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+
 body {
     background-color: #c6bdff;
     font-family: Arial, sans-serif;
@@ -384,4 +386,117 @@ body{
 }
 
 
+/******************************************** 이예은 CSS ********************************************/
 
+
+/* 전체 폰트 설정 */
+* {
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* 기본 홈 설정 */
+body {
+    background-color: #bfb8ee;
+    text-align: center;
+}
+
+/* 멤버 추가 입력 폼 스타일 */
+.memberbox {
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    display: none;
+    background-color: #aba2e9;
+}
+
+/* div안에 있는 input 설정 (이렇게 해야 기본 색상이 바뀜) */
+.form-floating>input {
+    background-color: transparent;
+    color: rgb(60, 50, 68);
+    border: 1px solid transparent;
+}
+.form-floating:focus {
+    background-color: transparent;
+}
+.form-floating>label {
+    color: #555;
+}
+
+/* input 클릭 시 설정 */
+.form-control:focus {
+    background-color: transparent;
+    box-shadow:none;
+    border: 1px solid #6759a5;
+    color: rgb(60, 50, 68);
+}
+
+/* 카드 스타일 */
+.mycards {
+    width: 90%;
+    margin: 20px auto;
+}
+.card {
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card-img-top {
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+    object-fit: cover;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+/* 모달 스타일 */
+.modal-content {
+    background-color: #c6bff3;
+    color: black;
+    border-radius: 10px;
+}
+
+/* 모달창에있는 선 지우기 */
+.modal-header,
+.modal-body,
+.modal-footer {
+    border: none;
+}
+
+/* 기본 버튼 설정 */
+.btn {
+    background-color: #8d83ce;
+    border-color: transparent;
+    color: white;
+}
+.btn:hover {
+    background-color: #7e71b3;
+    border-color: transparent;
+    color: white;
+}
+.btn:focus{
+    box-shadow:none;
+    outline: none;
+}
+
+/* 멤버 추가하기 버튼 폼 설정 */
+.savebtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.savebtn>button {
+    width: 100%;
+}
+
+/* 멤버 카드 이벤트 */
+.card {
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+}
+.card:hover {
+    transform: translateY(-8px);
+}
