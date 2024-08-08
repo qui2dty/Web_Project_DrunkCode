@@ -221,7 +221,7 @@ button:focus{
 
 /* 타이틀 위치 값 */
 .mytitle {
-    height: 250px;
+    height: 200px;
     color: black;
 
     display: flex;
