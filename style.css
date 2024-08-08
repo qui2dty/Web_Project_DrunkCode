@@ -500,3 +500,15 @@ body {
 .card:hover {
     transform: translateY(-8px);
 }
+/* 손원호 css */
+
+/* 타이틀 위치 값 */
+.mytitle {
+    height: 250px;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
